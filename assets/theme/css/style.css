@@ -959,10 +959,3 @@ blockquote {
 	top: 0;
 	left: -2400px;
 }
-
-footer,
-footer.mobirise-footer,
-.footer,
-.mobirise-footer {
-    display: none !important;
-}
