@@ -246,5 +246,24 @@
 <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='false' data-cookie-customDialogSelector='null' data-cookie-colorText='#4b4545' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0' data-cookie-bgOpacity='100' data-cookie-textButton='Aceitar' data-cookie-rejectText='REJECT' data-cookie-colorButton='#1e3f69' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#1e3f69' data-cookie-underlineLink='true' data-cookie-text="Usamos cookies para lhe proporcionar a melhor experiência. Leia nossa <a href='politicadeprivacidadeetermosdeuso.html'>política de privacidade</a>.">
    <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
+
+  <script>
+  function calcularTotal() {
+    let total = 0;
+    document.querySelectorAll(".qty-input").forEach(input => {
+      const price = parseFloat(input.dataset.price);
+      const qty = parseInt(input.value);
+      total += price * qty;
+    });
+    document.getElementById("total-price").textContent = total;
+  }
+
+  document.querySelectorAll(".qty-input").forEach(input => {
+    input.addEventListener("input", calcularTotal);
+  });
+
+  calcularTotal();
+</script>
+
   </body>
 </html>
