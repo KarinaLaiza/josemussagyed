@@ -343,5 +343,42 @@
   calcularTotal();
 </script>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const payButton = document.querySelector('a[href="métodosdepagamento.html"]');
+    
+    if (payButton) {
+        payButton.addEventListener("click", function(e) {
+            e.preventDefault(); // impede o redirecionamento imediato
+
+            let items = document.querySelectorAll(".cart-item");
+            let message = "Olá! Selecionei estes eBooks:\n\n";
+            
+            items.forEach(item => {
+                let title = item.querySelector(".item-name")?.innerText.trim() || "Ebook";
+                let price = item.querySelector(".item-price")?.innerText.trim() || "";
+                message += `- ${title} (${price})\n`;
+            });
+
+            let total = document.querySelector("#total-price")?.innerText.trim() || "0";
+            message += `\nTotal: ${total} MZN\n\nGostaria de efetuar o pagamento e receber os links e códigos.`;
+
+            let numero = "258872827076"; // número sem o "+" e sem espaços
+            let link = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+
+            // Abre o WhatsApp
+            window.open(link, "_blank");
+
+            // Depois de 2 segundos, redireciona para métodos de pagamento
+            setTimeout(function() {
+                window.location.href = "métodosdepagamento.html";
+            }, 2000);
+        });
+    }
+});
+</script>
+
+      
   </body>
 </html>
