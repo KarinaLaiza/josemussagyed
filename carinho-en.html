@@ -345,5 +345,47 @@
   calcularTotal();
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const payButton = document.querySelector('a[href="métodosdepagamento-en.html"]');
+
+    if (payButton) {
+        payButton.addEventListener("click", function(e) {
+            e.preventDefault(); // impede o redirecionamento imediato
+
+            const selectedEbooks = document.querySelectorAll('input.ebook-checkbox:checked');
+            if (selectedEbooks.length === 0) {
+                alert("Please select at least one ebook.");
+                return;
+            }
+
+            let message = "Hello! I would like to purchase the following ebooks:\n\n";
+            let total = 0;
+
+            selectedEbooks.forEach((ebook, index) => {
+                const label = ebook.parentElement.innerText.trim();
+                const price = parseFloat(ebook.dataset.price);
+                total += price;
+                message += `${index + 1}. ${label}\n`;
+            });
+
+            message += `\nTotal: ${total} MZN\n\nPlease send me the ebook links and opening codes after payment.`;
+
+            const numero = "258872827076";
+            const whatsappURL = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+
+            // Abre o WhatsApp com a mensagem pronta
+            window.open(whatsappURL, "_blank");
+
+            // Após 2 segundos, redireciona para a página de pagamento
+            setTimeout(function() {
+                window.location.href = "métodosdepagamento-en.html";
+            }, 2000);
+        });
+    }
+});
+</script>
+
+  
   </body>
 </html>
