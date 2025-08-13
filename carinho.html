@@ -347,30 +347,36 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const payButton = document.querySelector('a[href="métodosdepagamento.html"]');
-    
+
     if (payButton) {
         payButton.addEventListener("click", function(e) {
             e.preventDefault(); // impede o redirecionamento imediato
 
-            let items = document.querySelectorAll(".cart-item");
-            let message = "Olá! Selecionei estes eBooks:\n\n";
-            
-            items.forEach(item => {
-                let title = item.querySelector(".item-name")?.innerText.trim() || "Ebook";
-                let price = item.querySelector(".item-price")?.innerText.trim() || "";
-                message += `- ${title} (${price})\n`;
+            const selectedEbooks = document.querySelectorAll('input.ebook-checkbox:checked');
+            if (selectedEbooks.length === 0) {
+                alert("Por favor, selecione pelo menos um ebook.");
+                return;
+            }
+
+            let message = "Olá! Gostaria de comprar os seguintes ebooks:\n\n";
+            let total = 0;
+
+            selectedEbooks.forEach((ebook, index) => {
+                const label = ebook.parentElement.innerText.trim();
+                const price = parseFloat(ebook.dataset.price);
+                total += price;
+                message += `${index + 1}. ${label}\n`;
             });
 
-            let total = document.querySelector("#total-price")?.innerText.trim() || "0";
-            message += `\nTotal: ${total} MZN\n\nGostaria de efetuar o pagamento e receber os links e códigos.`;
+            message += `\nTotal: ${total} MZN\n\nPor favor, envie-me os links dos ebooks e os códigos de abertura após o pagamento.`;
 
-            let numero = "258872827076"; // número sem o "+" e sem espaços
-            let link = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
+            const numero = "258872827076";
+            const whatsappURL = `https://wa.me/${numero}?text=${encodeURIComponent(message)}`;
 
-            // Abre o WhatsApp
-            window.open(link, "_blank");
+            // Abre o WhatsApp com a mensagem pronta
+            window.open(whatsappURL, "_blank");
 
-            // Depois de 2 segundos, redireciona para métodos de pagamento
+            // Após 2 segundos, redireciona para a página de pagamento
             setTimeout(function() {
                 window.location.href = "métodosdepagamento.html";
             }, 2000);
@@ -378,6 +384,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
+
 
       
   </body>
