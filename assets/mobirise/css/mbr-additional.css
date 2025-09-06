@@ -10345,3 +10345,23 @@ a {
     margin-top: 0 !important;
   }
 }
+/* === Esconder o botão "Carrinho" no menu === */
+nav .navbar-buttons a[href="carinho.html"],
+nav .navbar-buttons a[href*="carinho"] {
+  display: none !important;
+}
+
+/* === Esconder a seção completa do Carrinho (página / seção) === */
+#cart-section,
+.cid-cart-section,
+#cart-items {
+  display: none !important;
+}
+
+/* === Esconder elementos de Combo === */
+.combo,
+.combo-section,
+.product-combo,
+.combo-description {
+  display: none !important;
+}
