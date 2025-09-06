@@ -10365,3 +10365,12 @@ nav .navbar-buttons a[href*="carinho"] {
 .combo-description {
   display: none !important;
 }
+/* === Esconder seções de COMBOS da página Destaques === */
+#content4-5e, /* título e descrição inicial de combos */
+#features7-5a, /* combo 6 eBooks */
+#features7-5f, /* combo 8 eBooks */
+#features7-5g, /* combo 10 eBooks */
+#features7-5h  /* combo 22 eBooks */
+{
+  display: none !important;
+}
