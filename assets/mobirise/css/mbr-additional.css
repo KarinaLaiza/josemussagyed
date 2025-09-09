@@ -10374,7 +10374,14 @@ nav .navbar-buttons a[href*="carinho"] {
 {
   display: none !important;
 }
-/* Esconder botão "Selecione para o carinho" só nessa seção */
-#pricing02-51 .mbr-section-btn {
+/* === Esconder somente o botão de "Selecione para o carinho" no topo da secção de Free eBooks === */
+/* alvo preciso: o .mbr-section-btn que é FILHO direto de .mbr-section-head dentro da seção pricing02-51 */
+#pricing02-51 .mbr-section-head > .mbr-section-btn {
+  display: none !important;
+}
+
+/* fallback extra — caso a estrutura seja ligeiramente diferente em outra página */
+/* esconde apenas o link que aponta para a página do carinho dentro de um .mbr-section-head */
+.mbr-section-head > .mbr-section-btn a[href*="carinho"] {
   display: none !important;
 }
