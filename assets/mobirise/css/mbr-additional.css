@@ -10374,3 +10374,7 @@ nav .navbar-buttons a[href*="carinho"] {
 {
   display: none !important;
 }
+/* Esconder botão "Selecione para o carinho" só nessa seção */
+#pricing02-51 .mbr-section-btn {
+  display: none !important;
+}
